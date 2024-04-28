@@ -4,6 +4,7 @@ import it.uniroma3.diadia.ambienti.*;
 
 import it.uniroma3.diadia.giocatore.*;
 
+import it.uniroma3.diadia.IOConsole.*;
 
 /**
  * Questa classe modella una partita del gioco
@@ -20,14 +21,16 @@ public class Partita {
 
 	private Labirinto labirinto;
 	private boolean finita;
-	public Giocatore giocatore;
-	public Stanza stanzaCorrente;
+	private Giocatore giocatore;
+	private Stanza stanzaCorrente;
+	private IO io;
 	
-	public Partita(Labirinto labirinto){  
+	public Partita(Labirinto labirinto, IO io){  
 		this.labirinto = labirinto;  
 		this.giocatore = new Giocatore();
 		this.finita = false;
-		this.stanzaCorrente=this.labirinto.getStanzaIniziale();
+		this.stanzaCorrente = this.labirinto.getStanzaIniziale();
+		this.io = io;
 		//this.cfu = CFU_INIZIALI;
 	}
 	
@@ -37,6 +40,14 @@ public class Partita {
 	
 	public Giocatore getGiocatore() {
 		return this.giocatore;
+	}
+	
+	public IO getIO() {
+		return this.io;
+	}
+	
+	public boolean giocatoreIsVivo() {
+		return this.giocatore.getCfu() > 0;	
 	}
 	
 	/**
@@ -53,7 +64,7 @@ public class Partita {
 	 * @return vero se partita finita
 	 */
 	public boolean isFinita() {
-		return finita || vinta() || (giocatore.cfu == 0);
+		return finita || vinta() || (giocatore.getCfu() == 0);
 	}
 
 	/**

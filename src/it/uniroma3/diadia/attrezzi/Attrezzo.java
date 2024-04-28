@@ -12,7 +12,7 @@ package it.uniroma3.diadia.attrezzi;
  */
 public class Attrezzo {
 
-	public String nome;
+	private String nome;
 	private int peso;
 
 	/**

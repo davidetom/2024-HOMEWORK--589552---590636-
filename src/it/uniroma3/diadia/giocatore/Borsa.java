@@ -9,9 +9,9 @@ import it.uniroma3.diadia.attrezzi.Attrezzo;
  * @version Base
  */
 public class Borsa {
-	public final static int DEFAULT_PESO_MAX_BORSA=10;
+	private final static int DEFAULT_PESO_MAX_BORSA=10;
 	private Attrezzo[] attrezzi;
-	public int numeroAttrezzi;
+	private int numeroAttrezzi;
 	private int pesoMax;
 	
 	/*costruttori della classe Borsa*/
@@ -37,7 +37,7 @@ public class Borsa {
 	}
 	
 	public int getPesoMax() {
-		return pesoMax;
+		return this.pesoMax;
 	}
 	
 	public Attrezzo getAttrezzo(String nomeAttrezzo) {
@@ -53,6 +53,10 @@ public class Borsa {
 		for(int i=0; i<this.numeroAttrezzi; i++)
 			peso+= this.attrezzi[i].getPeso();
 		return peso;
+	}
+	
+	public int getNumeroAttrezzi() {
+		return this.numeroAttrezzi;
 	}
 	
 	public boolean isEmpty() {
@@ -85,8 +89,9 @@ public class Borsa {
 		StringBuilder s =new StringBuilder();
 		if(!this.isEmpty()) {
 			s.append("Contenuto borsa ("+this.getPeso()+"kg/"+this.getPesoMax()+"kg): ");
-			for(int i=0; i<this.numeroAttrezzi; i++)
-				s.append(attrezzi[i].toString()+" ");
+			for(int i=0; i<this.numeroAttrezzi-1; i++)
+				s.append(attrezzi[i].toString()+", ");
+			s.append(attrezzi[numeroAttrezzi-1].toString());
 		}
 		else
 			s.append("Borsa vuota");

@@ -11,8 +11,8 @@ import it.uniroma3.diadia.attrezzi.Attrezzo;
  */
 
 public class Labirinto {
-	public Stanza stanzaIniziale;
-	public Stanza stanzaVincente;
+	private Stanza stanzaIniziale;
+	private Stanza stanzaVincente;
 	
 	public Labirinto() {
 		creaStanze();
