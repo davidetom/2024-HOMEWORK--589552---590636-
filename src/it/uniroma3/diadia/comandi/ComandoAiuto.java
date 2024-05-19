@@ -3,7 +3,6 @@ package it.uniroma3.diadia.comandi;
 import it.uniroma3.diadia.Partita;
 
 public class ComandoAiuto implements Comando{
-	
 	private final static String NOME = "aiuto";
 	
 	@Override
@@ -24,6 +23,6 @@ public class ComandoAiuto implements Comando{
 	
 	@Override
 	public String getParametro() {
-		return null;	
+		return null;
 	}
 }

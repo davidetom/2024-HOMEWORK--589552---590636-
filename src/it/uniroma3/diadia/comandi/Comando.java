@@ -11,8 +11,15 @@ public interface Comando {
 	* set parametro del comando
 	*/
 	public void setParametro(String parametro);
-	
+	/**
+	 * get nome del comando
+	 */
 	public String getNome();
-	
+	/**
+	 * get parametro comando
+	 */
 	public String getParametro();
+	
+	
+	
 }

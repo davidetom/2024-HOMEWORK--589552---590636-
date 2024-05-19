@@ -30,7 +30,13 @@ class ComandoPosaTest {
 	 */
 	@BeforeEach
 	public void setUp() {
-		this.labirinto = new Labirinto();
+		this.labirinto = new LabirintoBuilder()
+				.addStanzaIniziale("Atrio")
+				.addAttrezzo("martello", 3)
+				.addStanzaVincente("Biblioteca")
+				.addAdiacenza("Atrio", "Biblioteca", "nord")
+				.addAdiacenza("Biblioteca", "Atrio", "sud")
+				.getLabirinto();
 		this.io = new IOConsole();
 		this.partita = new Partita(labirinto, io);
 		this.lanterna = new Attrezzo("lanterna", 3);

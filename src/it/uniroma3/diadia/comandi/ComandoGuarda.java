@@ -2,9 +2,9 @@ package it.uniroma3.diadia.comandi;
 
 import it.uniroma3.diadia.Partita;
 
+
 public class ComandoGuarda implements Comando {
-	
-	private final static String NOME = "guarda";
+	private static final String NOME = "guarda";
 	
 	@Override
 	public void setParametro(String parametro) {}
@@ -22,6 +22,6 @@ public class ComandoGuarda implements Comando {
 	
 	@Override
 	public String getParametro() {
-		return null;	
+		return null;
 	}
 }

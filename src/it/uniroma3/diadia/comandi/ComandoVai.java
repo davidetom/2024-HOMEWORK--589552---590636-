@@ -5,10 +5,8 @@ import it.uniroma3.diadia.Partita;
 import it.uniroma3.diadia.ambienti.Stanza;
 
 public class ComandoVai implements Comando{
-	
 	private String direzione;
-	private final static String NOME = "vai";
-	
+	private static final String NOME = "vai";
 	/**
 	* set parametro del comando
 	*/
@@ -50,6 +48,6 @@ public class ComandoVai implements Comando{
 	
 	@Override
 	public String getParametro() {
-		return null;	
+		return null;
 	}
 }

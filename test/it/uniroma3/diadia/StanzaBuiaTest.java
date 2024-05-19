@@ -32,7 +32,7 @@ class StanzaBuiaTest {
 	 */
 	@Test
 	public void testStanzaSogliaSNome() {
-		assertEquals(descrizione, stanzaSenzaLanterna.toString());
+		assertEquals(descrizione, stanzaSenzaLanterna.getDescrizione());
 	}
 	
 	/**

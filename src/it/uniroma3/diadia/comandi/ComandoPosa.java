@@ -5,9 +5,8 @@ import it.uniroma3.diadia.Partita;
 import it.uniroma3.diadia.attrezzi.*;
 
 public class ComandoPosa implements Comando {
-	
 	private String nomeAttrezzo;
-	private final static String NOME = "posa";
+	private static final String NOME = "posa";
 	
 	@Override
 	public void setParametro(String parametro) {
@@ -18,7 +17,7 @@ public class ComandoPosa implements Comando {
 	public void esegui(Partita partita) {
 		if(nomeAttrezzo==null) {
 			partita.getIO().mostraMessaggio("Quale attrezzo vuoi posare?");
-			nomeAttrezzo = partita.getIO().leggiRiga();
+			nomeAttrezzo=partita.getIO().leggiRiga();
 		}
 		Attrezzo a = null;
 		a = partita.getGiocatore().getBorsa().removeAttrezzo(nomeAttrezzo);
@@ -32,8 +31,8 @@ public class ComandoPosa implements Comando {
 		}
 		else {
 			partita.getIO().mostraMessaggio("Attrezzo posato! ");	
-			//console.mostraMessaggio(partita.getStanzaCorrente().getDescrizione());
-			//console.mostraMessaggio(partita.getGiocatore().mostraInventario());
+			partita.getIO().mostraMessaggio(partita.getStanzaCorrente().getDescrizione());
+			partita.getIO().mostraMessaggio(partita.getGiocatore().mostraInventario());
 		}
 	}
 	
@@ -44,7 +43,7 @@ public class ComandoPosa implements Comando {
 	
 	@Override
 	public String getParametro() {
-		return null;	
+		return null;
 	}
 
 }

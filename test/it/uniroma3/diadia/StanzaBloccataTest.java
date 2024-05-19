@@ -39,11 +39,25 @@ class StanzaBloccataTest {
 	}
 	
 	/**
-	 * test oer stanza senza chiave
+	 * test per stanza senza chiave
 	 */
 	@Test
 	public void testStanzaBloccata_StanzaSenzaChiave() {
 		assertEquals(stanzaSenzaChiave, stanzaSenzaChiave.getStanzaAdiacente(direzione));
+	}
+	
+	/**
+	 * test getDescrizione stanza bloccata
+	 */
+	@Test
+	public void testGetDescrizione_StanzaConChiave(){
+		assertEquals(stanzaConChiave.toString(), stanzaConChiave.getDescrizione());
+	}
+	
+	@Test
+	public void testGetDescrizione_StanzaSenzaChiave() {
+		String info = "Stanza bloccata, vietato l'accesso senza l'attrezzo richiesto: chiave\n";
+		assertEquals(info, stanzaSenzaChiave.getDescrizione());
 	}
 
 }

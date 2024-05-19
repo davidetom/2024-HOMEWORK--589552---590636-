@@ -5,9 +5,8 @@ import it.uniroma3.diadia.Partita;
 import it.uniroma3.diadia.attrezzi.*;
 
 public class ComandoPrendi implements Comando{
-	
 	private String nomeAttrezzo;
-	private final static String NOME = "prendi";
+	private static final String NOME = "prendi";
 	
 	@Override
 	public void setParametro(String parametro) {
@@ -39,8 +38,8 @@ public class ComandoPrendi implements Comando{
 		}
 		else {
 			partita.getIO().mostraMessaggio("Oggetto raccolto! ");
-			//console.mostraMessaggio(partita.getStanzaCorrente().getDescrizione());
-			//console.mostraMessaggio(partita.getGiocatore().mostraInventario());
+			partita.getIO().mostraMessaggio(partita.getStanzaCorrente().getDescrizione());
+			partita.getIO().mostraMessaggio(partita.getGiocatore().mostraInventario());
 		}
 	}
 	
@@ -51,6 +50,6 @@ public class ComandoPrendi implements Comando{
 	
 	@Override
 	public String getParametro() {
-		return null;	
+		return null;
 	}
 }
