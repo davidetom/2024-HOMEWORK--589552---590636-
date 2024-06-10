@@ -12,8 +12,6 @@ import it.uniroma3.diadia.giocatore.*;
 
 import it.uniroma3.diadia.attrezzi.*;
 
-import java.util.*
-;
 public class BorsaTest {
 	/*FIXTURE*/
 	private Borsa borsaVuota;
@@ -154,11 +152,6 @@ public class BorsaTest {
 	public void testGetContenutoOrdinatoPerPeso() {
 		List<Attrezzo> attuale = this.borsaAttrezzi.getContenutoOrdinatoPerPeso();
 		assertEquals("[ candela:1, scudo:3, spada:4 ]", borsaAttrezzi.toString(attuale));
-		  /*Iterator<Attrezzo> i = attuale.iterator();
-		  assertEquals(candela, i.next());
-		  assertEquals(scudo, i.next());
-		  assertEquals(spada, i.next());
-		  assertEquals(piombo, i.next());*/
 	}
 	
 	@Test
@@ -191,12 +184,6 @@ public class BorsaTest {
 		assertEquals("(1, { candela } ) ; (3, { scudo } ) ; (4, { spada } )", borsaAttrezzi.toString(mappa));
 	}
 	
-	/*@Test
-	public void testGetContenutoRaggruppatoPerPeso_Borsa2PesiUguali() {
-		Map<Integer, Set<Attrezzo>> mappa = borsaDueAttrezziStessoPeso.getContenutoRaggruppatoPerPeso();
-		assertEquals("(1, { candela, bastone } ) ; (3, { scudo } ) ; (4, { spada } )", borsaDueAttrezziStessoPeso.toString(mappa));
-	}*/
-	
 	/**
 	 * Test metodo getSortedSetOrdinatoPerPeso
 	 */
@@ -217,15 +204,4 @@ public class BorsaTest {
 		SortedSet<Attrezzo> insieme = borsaDueAttrezziStessoPeso.getSortedSetOrdinataPerPeso();
 		assertEquals("{ bastone:1, candela:1, scudo:3, spada:4 }", borsaDueAttrezziStessoPeso.toString(insieme));
 	}
-
-	/*@Test
-	public void testContenutoRaggruppatoPerPeso() {
-		//1-borsa vuota
-		//2-1 attrezzo
-		//3-2 attrezzi di peso diverso
-		//4- 2attrezzi stesso peso
-		//5- 3 attrezzi
-	}*/
-
-
 }

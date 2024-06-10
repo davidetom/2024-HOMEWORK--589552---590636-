@@ -63,5 +63,7 @@ public class Attrezzo implements Comparable<Attrezzo> {
 		}
 		return cmp;
 	}
+	
+	
 
 }

@@ -2,6 +2,7 @@ package it.uniroma3.diadia.giocatore;
 
 import java.util.*;
 
+import it.uniroma3.diadia.Configuratore;
 import it.uniroma3.diadia.attrezzi.Attrezzo;
 
 /**
@@ -11,7 +12,7 @@ import it.uniroma3.diadia.attrezzi.Attrezzo;
  * @version Base
  */
 public class Borsa {
-	public final static int DEFAULT_PESO_MAX_BORSA=10;
+	public final static int DEFAULT_PESO_MAX_BORSA= Configuratore.getPesoMax();
 	private List<Attrezzo> attrezzi;
 	private int pesoMax;
 	
@@ -30,11 +31,6 @@ public class Borsa {
 		if(this.getPeso() + attrezzo.getPeso() > this.getPesoMax())
 			return false;
 		return this.attrezzi.add(attrezzo);
-		/*if(this.numeroAttrezzi==10)
-			return false;
-		this.attrezzi[this.numeroAttrezzi] = attrezzo;
-		this.numeroAttrezzi++;
-		return true;*/
 	}
 	
 	public int getPesoMax() {
@@ -54,10 +50,6 @@ public class Borsa {
 				return a;
 		}
 		return null;
-		/*for(int i=0; i<this.numeroAttrezzi; i++)
-			if(this.attrezzi[i].getNome().equals(nomeAttrezzo))
-				a=attrezzi[i];
-		return a;*/
 	}
 	
 	public int getPeso() {
@@ -189,5 +181,17 @@ public class Borsa {
 		for(Attrezzo a : this.attrezzi)
 			ordinata.add(a);
 		return ordinata;
+	}
+	
+	static class ComparatorePerPeso implements Comparator<Attrezzo>{
+		
+		@Override
+		public int compare(Attrezzo a1, Attrezzo a2) {
+			int cmp = a1.getPeso()-a2.getPeso();
+			if(cmp == 0) {
+				cmp = a1.getNome().compareTo(a2.getNome());
+			}
+			return cmp;
+		}
 	}
  }

@@ -2,7 +2,10 @@ package it.uniroma3.diadia;
 
 import it.uniroma3.diadia.ambienti.*;
 import it.uniroma3.diadia.comandi.Comando;
-import it.uniroma3.diadia.comandi.FabbricaDiComandiFisarmonica;
+import it.uniroma3.diadia.comandi.FabbricaDiComandiRiflessiva;
+
+import java.util.Scanner;
+
 import it.uniroma3.diadia.IOConsole.*;
 /**
  * Classe principale di diadia, un semplice gioco di ruolo ambientato al dia.
@@ -28,12 +31,6 @@ public class DiaDia {
 			"Per conoscere le istruzioni usa il comando 'aiuto'.";
 	
 	private Partita partita;
-	private Labirinto labirinto;
-
-	public DiaDia(IO io) {
-		this.labirinto=new Labirinto();
-		this.partita = new Partita(new Labirinto(), io); 
-	}
 	
 	public DiaDia(Labirinto lab, IO io) {
 		this.partita = new Partita(lab, io);
@@ -57,7 +54,7 @@ public class DiaDia {
 	private boolean processaIstruzione(String istruzione) {
 		
 		Comando comandoDaEseguire;
-		FabbricaDiComandiFisarmonica factory = new FabbricaDiComandiFisarmonica();
+		FabbricaDiComandiRiflessiva factory = new FabbricaDiComandiRiflessiva();
 		comandoDaEseguire = factory.costruisciComando(istruzione);
 		comandoDaEseguire.esegui(this.partita);
 		if(this.partita.vinta())
@@ -70,126 +67,12 @@ public class DiaDia {
 		
 	}
 
-	/**
-	 * Stampa informazioni di aiuto.
-	 */
-	/*private void aiuto() {
-		for(int i=0; i< elencoComandi.length; i++) 
-			io.mostraMessaggio(elencoComandi[i]+" ");
-		io.mostraMessaggio("\n");
-	}*/
-
-	/**
-	 * Cerca di andare in una direzione. Se c'e' una stanza ci entra 
-	 * e ne stampa il nome, altrimenti stampa un messaggio di errore
-	 */
-	/*private void vai(String direzione) {
-		if(direzione==null) {
-			io.mostraMessaggio("Dove vuoi andare ?");
-			direzione = io.leggiRiga();
-		}
-		
-		Stanza prossimaStanza = null;
-		prossimaStanza = this.partita.getStanzaCorrente().getStanzaAdiacente(direzione);
-		if (prossimaStanza == null)
-			io.mostraMessaggio("Direzione inesistente");
-		else {
-			this.partita.setStanzaCorrente(prossimaStanza);
-			int cfu = this.partita.getGiocatore().getCfu();
-			cfu--;
-			this.partita.getGiocatore().setCfu(cfu);
-		}
-		io.mostraMessaggio(partita.getStanzaCorrente().getDescrizione() +
-				"\nCfu rimasti: " + this.partita.getGiocatore().getCfu());
-	}*/
-	
-	/**
-	 * comando "prendi"
-	 */
-	/*private void prendi(String nomeAttrezzo) {
-		if(nomeAttrezzo==null) {
-			io.mostraMessaggio("Quale attrezzo vuoi prendere ?");
-			nomeAttrezzo = io.leggiRiga();
-		}
-		Attrezzo a = null;
-		a = this.partita.getStanzaCorrente().getAttrezzo(nomeAttrezzo);
-		if(a == null) {
-			io.mostraMessaggio("Questo attrezzo non è presente nella stanza!");
-			return;
-		}
-		this.partita.getStanzaCorrente().removeAttrezzo(nomeAttrezzo);
-		
-		if(!this.partita.getGiocatore().getBorsa().addAttrezzo(a)) {
-			this.partita.getStanzaCorrente().addAttrezzo(a);
-			if(this.partita.getGiocatore().getBorsa().numeroAttrezzi == 10) {
-				io.mostraMessaggio("Borsa piena! ");
-			}
-			else {
-				io.mostraMessaggio("Oggetto troppo pesante! ");
-			}
-		}
-		else {
-			io.mostraMessaggio("Oggetto raccolto! ");
-			io.mostraMessaggio(partita.getStanzaCorrente().getDescrizione());
-			io.mostraMessaggio(this.partita.getGiocatore().mostraInventario());
-		}
-	}*/
-	
-	/**
-	 * comando "posa"
-	 */
-	/*private void posa(String nomeAttrezzo) {
-		if(nomeAttrezzo==null) {
-			io.mostraMessaggio("Quale attrezzo vuoi posare?");
-			nomeAttrezzo=io.leggiRiga();
-		}
-		Attrezzo a = null;
-		a = this.partita.getGiocatore().getBorsa().removeAttrezzo(nomeAttrezzo);
-		if(a==null) {
-			io.mostraMessaggio("Questo attrezzo non è presente nella tua borsa!");
-			return;
-		}
-		if(!this.partita.getStanzaCorrente().addAttrezzo(a)) {
-			this.partita.getGiocatore().getBorsa().addAttrezzo(a);
-			io.mostraMessaggio("La stanza e' piena! ");
-		}
-		else {
-			io.mostraMessaggio("Attrezzo posato! ");	
-			io.mostraMessaggio(partita.getStanzaCorrente().getDescrizione());
-			io.mostraMessaggio(this.partita.getGiocatore().mostraInventario());
-		}
-	}*/
-
-	/**
-	 * Comando "Fine".
-	 */
-	/*private void fine() {
-		io.mostraMessaggio("Grazie di aver giocato!");  // si desidera smettere
-	}*/
-
-	public static void main(String[] argc) {
-		IO io = new IOConsole();
-		Labirinto labirinto = new LabirintoBuilder()
-				.addStanzaIniziale("Atrio")
-				.addAttrezzo("chiave", 3)
-				.addStanzaVincente("Biblioteca")
-				.addStanzaBloccata("Corridoio", "nord", "passepartout")
-				.addAdiacenza("Atrio", "Corridoio", "nord")
-				.addAdiacenza("Corridoio", "Atrio", "sud")
-				.addAdiacenza("Corridoio", "Biblioteca", "nord")
-				.addStanza("Aula n10")
-				.addAttrezzo("torcia", 2)
-				.addAdiacenza("Atrio", "Aula n10", "ovest")
-				.addAdiacenza("Aula n10", "Atrio", "est")
-				.addStanza("Sgabuzzino")
-				.addAdiacenza("Atrio", "Sgabuzzino", "est")
-				.addAdiacenza("Sgabuzzino", "Atrio", "ovest")
-				.addStanzaBuia("Mensa", "torcia")
-				.addAttrezzo("passepartout", 1)
-				.addAdiacenza("Sgabuzzino", "Mensa", "sud")
-				.addAdiacenza("Mensa", "Sgabuzzino", "nord")
-				.getLabirinto();
+	public static void main(String[] argc) throws Exception {
+		Scanner scannerDiLinee = new Scanner(System.in);
+		IO io = new IOConsole(scannerDiLinee);
+		Labirinto labirinto = Labirinto.newBuilder("labirinto.txt").getLabirinto();
 		DiaDia gioco = new DiaDia(labirinto, io);
 		gioco.gioca();
+		scannerDiLinee.close();
 	}
 }

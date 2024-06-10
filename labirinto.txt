@@ -1,0 +1,11 @@
+Stanze:Atrio,Biblioteca,N11,Sgabuzzino,Mensa
+Magica:
+Buia:Mensa torcia
+Bloccata:Corridoio nord pass
+Inizio:Atrio
+Vincente:Biblioteca
+Mago:Atrio Carlo Namonino! anello 4 
+Cane:
+Strega:
+Attrezzi:martello 3 Atrio,torcia 2 N11,pass 1 Mensa
+Uscite:Atrio nord Corridoio,Corridoio sud Atrio,Corridoio nord Biblioteca,Atrio ovest N11,N11 est Atrio,Atrio est Sgabuzzino,Sgabuzzino ovest Atrio,Sgabuzzino sud Mensa,Mensa nord Sgabuzzino

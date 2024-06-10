@@ -4,28 +4,22 @@ import it.uniroma3.diadia.Partita;
 
 import it.uniroma3.diadia.attrezzi.*;
 
-public class ComandoPrendi implements Comando{
-	private String nomeAttrezzo;
+public class ComandoPrendi extends AbstractComando{
+
 	private static final String NOME = "prendi";
 	
 	@Override
-	public void setParametro(String parametro) {
-		this.nomeAttrezzo = parametro;
-	}
-	
-	@Override
 	public void esegui(Partita partita) {
-		if(this.nomeAttrezzo==null) {
+		if(this.getParametro()==null) {
 			partita.getIO().mostraMessaggio("Quale attrezzo vuoi prendere ?");
-			this.nomeAttrezzo = partita.getIO().leggiRiga();
+			this.setParametro(partita.getIO().leggiRiga());
 		}
-		Attrezzo a = null;
-		a = partita.getStanzaCorrente().getAttrezzo(nomeAttrezzo);
+		Attrezzo a = partita.getStanzaCorrente().getAttrezzo(this.getParametro());
 		if(a == null) {
 			partita.getIO().mostraMessaggio("Questo attrezzo non è presente nella stanza!");
 			return;
 		}
-		partita.getStanzaCorrente().removeAttrezzo(nomeAttrezzo);
+		partita.getStanzaCorrente().removeAttrezzo(this.getParametro());
 			
 		if(!partita.getGiocatore().getBorsa().addAttrezzo(a)) {
 			partita.getStanzaCorrente().addAttrezzo(a);
@@ -38,18 +32,11 @@ public class ComandoPrendi implements Comando{
 		}
 		else {
 			partita.getIO().mostraMessaggio("Oggetto raccolto! ");
-			partita.getIO().mostraMessaggio(partita.getStanzaCorrente().getDescrizione());
-			partita.getIO().mostraMessaggio(partita.getGiocatore().mostraInventario());
 		}
 	}
 	
 	@Override
 	public String getNome() {
 		return NOME;
-	}
-	
-	@Override
-	public String getParametro() {
-		return null;
 	}
 }

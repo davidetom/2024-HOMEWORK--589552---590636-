@@ -1,5 +1,5 @@
 package it.uniroma3.diadia;
-
+//CHANGE
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -16,11 +16,11 @@ class StanzaBloccataTest {
 	private StanzaBloccata stanzaSenzaChiave;
 	private Stanza stanzaCollegata;
 	private Attrezzo chiave;
-	private String direzione;
+	private Direzione direzione;
 	
 	@BeforeEach
 	void setUp() {	
-		direzione = "nord";
+		direzione = Direzione.nord;
 		stanzaConChiave = new StanzaBloccata("stanza Con Chiave", direzione, "chiave");
 		stanzaSenzaChiave = new StanzaBloccata("stanza Senza Chiave", direzione, "chiave");
 		chiave = new Attrezzo("chiave", 1);

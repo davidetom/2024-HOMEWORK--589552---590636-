@@ -1,16 +1,16 @@
 package it.uniroma3.diadia.comandi;
 
 import it.uniroma3.diadia.Partita;
+import it.uniroma3.diadia.attrezzi.Attrezzo;
 
-import it.uniroma3.diadia.attrezzi.*;
-
-public class ComandoPosa extends AbstractComando {
-	private static final String NOME = "posa";
+public class ComandoRegala extends AbstractComando {
+	
+	private static final String NOME = null;
 	
 	@Override
 	public void esegui(Partita partita) {
 		if(this.getParametro()==null) {
-			partita.getIO().mostraMessaggio("Quale attrezzo vuoi posare?");
+			partita.getIO().mostraMessaggio("Quale attrezzo vuoi regalare ?");
 			this.setParametro(partita.getIO().leggiRiga());
 		}
 		Attrezzo a = partita.getGiocatore().getBorsa().removeAttrezzo(this.getParametro());
@@ -20,10 +20,10 @@ public class ComandoPosa extends AbstractComando {
 		}
 		if(!partita.getStanzaCorrente().addAttrezzo(a)) {
 			partita.getGiocatore().getBorsa().addAttrezzo(a);
-			partita.getIO().mostraMessaggio("La stanza e' piena! ");
+			partita.getIO().mostraMessaggio("La stanza è piena!");
 		}
 		else {
-			partita.getIO().mostraMessaggio("Attrezzo posato! ");	
+			partita.getIO().mostraMessaggio("Attrezzo posato!");
 		}
 	}
 	
@@ -31,4 +31,5 @@ public class ComandoPosa extends AbstractComando {
 	public String getNome() {
 		return NOME;
 	}
+
 }

@@ -14,13 +14,14 @@ import it.uniroma3.diadia.ambienti.*;
 
 import it.uniroma3.diadia.IOConsole.*;
 
+import java.util.Scanner;
+
 class ComandoPosaTest {
 	/**
 	 * FIXTURE
 	 */
 	private Partita partita;
 	private Labirinto labirinto;
-	private IO io;
 	private Comando comando;
 	private Attrezzo lanterna;
 	private String parametro;
@@ -28,16 +29,12 @@ class ComandoPosaTest {
 	/**
 	 * SetUp
 	 */
+
 	@BeforeEach
-	public void setUp() {
-		this.labirinto = new LabirintoBuilder()
-				.addStanzaIniziale("Atrio")
-				.addAttrezzo("martello", 3)
-				.addStanzaVincente("Biblioteca")
-				.addAdiacenza("Atrio", "Biblioteca", "nord")
-				.addAdiacenza("Biblioteca", "Atrio", "sud")
-				.getLabirinto();
-		this.io = new IOConsole();
+	public void setUp() throws Exception {
+		Scanner scannerDiLinee = new Scanner(System.in);
+		this.labirinto = Labirinto.newBuilder("labirinto.txt").getLabirinto();
+		IO io = new IOConsole(scannerDiLinee);
 		this.partita = new Partita(labirinto, io);
 		this.lanterna = new Attrezzo("lanterna", 3);
 		this.comando = new ComandoPosa();

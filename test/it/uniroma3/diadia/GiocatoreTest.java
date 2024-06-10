@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Test;
 
 import it.uniroma3.diadia.giocatore.*;
 
-//import it.uniroma3.diadia.attrezzi.*;
 
 public class GiocatoreTest {
 	private Giocatore zero;
@@ -47,7 +46,7 @@ public class GiocatoreTest {
 	 */
 	@Test
 	public void testGetCfu_InizialiGiocatore() {
-		assertEquals(20, zero.getCfu(), "Eroore, dovrebbe essere 20");
+		assertEquals(30, zero.getCfu(), "Eroore, dovrebbe essere 20");
 	}
 	@Test
 	public void testGetCfu_GiocatoreZeroCfu() {

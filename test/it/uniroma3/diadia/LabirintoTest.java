@@ -20,11 +20,10 @@ public class LabirintoTest {
 	private Stanza biblioteca;
 	
 	@BeforeEach
-	public void setUp() {
-		this.labirinto = new Labirinto();
-		this.atrio = new Stanza("atrio");
-		this.labirinto.setStanzaIniziale(atrio);
-		biblioteca = this.labirinto.getStanzaVincente();
+	public void setUp()throws Exception {
+		this.labirinto = Labirinto.newBuilder("labirinto.txt").getLabirinto();
+		this.atrio = new Stanza("Atrio");
+		this.biblioteca = new Stanza("Biblioteca");
 	}
 	
 	/*Test metodo getStanzaCorrente*/

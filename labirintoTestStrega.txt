@@ -1,0 +1,11 @@
+Stanze:Atrio,Corridoio,Biblioteca,N10
+Magica:
+Buia:
+Bloccata:  
+Inizio:Atrio
+Vincente:Biblioteca
+Mago:
+Cane:
+Strega:Atrio Filomena ninooo
+Attrezzi:martello 3 Corridoio,cacciavite 2 Corridoio,dado 1 Biblioteca
+Uscite:Atrio nord Corridoio, Corridoio sud Atrio,Atrio est Biblioteca,Biblioteca ovest Atrio,Atrio ovest N10,N10 est Atrio
